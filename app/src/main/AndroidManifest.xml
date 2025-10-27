@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CustomCalendar">
         <activity
+            android:name=".NewScreen"
+            android:exported="false" />
+        <activity
             android:name=".PaymentInProgress"
             android:exported="false" />
         <activity
