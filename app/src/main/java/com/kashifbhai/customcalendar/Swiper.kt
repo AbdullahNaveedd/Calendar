@@ -89,19 +89,32 @@ class Swiper : AppCompatActivity() {
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(sb: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (progress > 0) {
-                    slideText.visibility = View.GONE
-                    sb?.progressDrawable =
-                        ContextCompat.getDrawable(this@Swiper, R.drawable.seekbar_track_red)
-                } else {
-                    slideText.visibility = View.VISIBLE
+                if (sb != null) {
+                    val max = sb.max
+                    val alphaValue = 1f - (progress.toFloat() / max.toFloat())
+                    slideText.alpha = alphaValue.coerceIn(0f, 1f)
+                    if (progress > 0) {
+                        sb.progressDrawable =
+                            ContextCompat.getDrawable(this@Swiper, R.drawable.seekbar_track_red)
+                    } else {
+                        slideText.visibility = View.VISIBLE
+                        slideText.alpha = 1f
+                    }
+                    if (progress >= max) {
+                        slideText.animate()
+                            .alpha(0f)
+                            .setDuration(200)
+                            .withEndAction { slideText.visibility = View.GONE }
+                            .start()
+                    } else {
+                        if (slideText.visibility == View.GONE) {
+                            slideText.visibility = View.VISIBLE
+                        }
+                    }
                 }
             }
 
             override fun onStartTrackingTouch(sb: SeekBar?) {
-                if (isValidTouch) {
-                    slideText.visibility = View.GONE
-                }
             }
 
             override fun onStopTrackingTouch(sb: SeekBar?) {
@@ -111,14 +124,15 @@ class Swiper : AppCompatActivity() {
                 )
 
                 if (sb != null) {
-                    if (sb.progress >= 99) {
+                    if (sb.progress >= 100) {
                         Log.d("SeekBar", "Locked at end")
                         adapter.updateLockedVisibility(true)
                         slideText.visibility = View.GONE
+                        slideText.alpha = 0f
+
                     } else {
                         Log.d("SeekBar", "Animating back to start from ${sb.progress}")
                         adapter.updateLockedVisibility(false)
-                        sb.thumbOffset = -3
 
                         ValueAnimator.ofInt(sb.progress, 0).apply {
                             duration = 300
@@ -126,8 +140,13 @@ class Swiper : AppCompatActivity() {
                                 val animatedProgress = animator.animatedValue as Int
                                 sb.progress = animatedProgress
                                 Log.d("Animator", "Progress: $animatedProgress")
+                                val animatedAlpha =
+                                    1f - (animatedProgress.toFloat() / sb.max.toFloat())
+                                slideText.alpha = animatedAlpha.coerceIn(0f, 1f)
+
                                 if (animatedProgress == 0) {
                                     slideText.visibility = View.VISIBLE
+                                    slideText.animate().alpha(1f).setDuration(200).start()
                                 }
                             }
                             start()
@@ -138,7 +157,7 @@ class Swiper : AppCompatActivity() {
             }
         })
     }
-    override fun onResume() {
+        override fun onResume() {
         super.onResume()
         seekBar.progress = 0
         slideText.visibility = View.VISIBLE
