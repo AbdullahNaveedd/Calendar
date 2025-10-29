@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.kashifbhai.customcalendar.databinding.ActivitySwiperBinding
 
 class Swiper : AppCompatActivity() {
     private lateinit var seekBar: SeekBar
@@ -21,11 +22,14 @@ class Swiper : AppCompatActivity() {
     private lateinit var next: Button
     private lateinit var slideText: TextView
     private var isValidTouch = false
+    private lateinit var binding: ActivitySwiperBinding
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swiper)
+
+        binding = ActivitySwiperBinding.inflate(layoutInflater)
 
         seekBar = findViewById(R.id.swipeSeekBar)
         viewPager = findViewById(R.id.viewPager)
