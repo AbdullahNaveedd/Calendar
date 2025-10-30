@@ -8,17 +8,6 @@
     android:background="@color/whitish"
     tools:context=".PaymentInProgress">
 
-    <ImageView
-        android:id="@+id/back_arrow"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/chevron_left_24dp_000000_fill0_wght400_grad0_opsz24"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/back_arrow_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
     <TextView
         android:id="@+id/txtPaymentInProcess"
         android:layout_width="wrap_content"
@@ -37,8 +26,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constaint_second"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:background="@drawable/constraint_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,30 +39,17 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/okay_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
             android:background="@drawable/okay_btn"
-            android:text="Okay"
+            android:text="@string/next_fragment"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/constaint_second"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cancel_button"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:text="Cancel"
-        android:textColor="@color/white"
-        android:background="@drawable/cancel_btn"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/okay_btn"
-        app:layout_constraintBottom_toBottomOf="@id/constaint_second"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -82,24 +58,39 @@
         android:layout_height="wrap_content"
         android:text="123"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@id/constaint_second"
         app:layout_constraintTop_toBottomOf="@id/constaint_second"
         app:layout_constraintEnd_toEndOf="@id/constaint_second"
         />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/incrementbtn"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Click"
-        android:textColor="@color/white"
+        android:layout_marginStart="15dp"
         android:background="@drawable/bg_calendar_dialog"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@id/constaint_second"
-        app:layout_constraintTop_toBottomOf="@id/num"
-        app:layout_constraintEnd_toEndOf="@id/constaint_second"
-        />
+        app:layout_constraintTop_toBottomOf="@id/num" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/decrementbtn"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_calendar_dialog"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/constaint_second"
+        app:layout_constraintTop_toBottomOf="@id/num" />
 
     <ImageView
         android:id="@+id/logo"

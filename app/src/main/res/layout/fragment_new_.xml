@@ -11,24 +11,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Fragment"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_arrow"
         app:layout_constraintEnd_toEndOf="@id/constaint_second"
         app:layout_constraintStart_toStartOf="@id/constaint_second"
+        app:layout_constraintTop_toTopOf="@+id/back_arrow" />
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/back_arrow_bg"
+        android:src="@drawable/chevron_left_24dp_000000_fill0_wght400_grad0_opsz24"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constaint_second"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/constraint_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -48,15 +59,25 @@
             android:id="@+id/cancel_button"
             android:layout_width="80dp"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cancel_btn"
             android:text="Cancel"
             android:textColor="@color/white"
-            android:background="@drawable/cancel_btn"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/okay_btn"
             app:layout_constraintBottom_toBottomOf="@id/constaint_second"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/okay_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/logo_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
