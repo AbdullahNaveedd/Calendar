@@ -47,9 +47,8 @@ class PaymentInProgress : AppCompatActivity() {
             viewModel.addOne()
             textView.text = viewModel.number.value!!.toString()
         }
-
         decrementbtn.setOnClickListener {
-            if(viewModel.number.value ==0) {
+            if(viewModel.number.value == 0) {
                 viewModel.number.observe(this)
                 { value ->
                     Toast.makeText(
