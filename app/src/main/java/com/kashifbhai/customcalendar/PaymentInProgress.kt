@@ -19,10 +19,10 @@ class PaymentInProgress : AppCompatActivity() {
     private lateinit var textView: TextView
     private lateinit var incrementbtn: Button
     private lateinit var decrementbtn: Button
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         setContentView(R.layout.activity_payment_in_progress)
 
@@ -34,11 +34,13 @@ class PaymentInProgress : AppCompatActivity() {
         val viewModel: NewViewModel = ViewModelProvider(this).get(NewViewModel::class.java)
         textView.text = viewModel.number.value!!.toString()
         okbtn.setOnClickListener {
-            if(viewModel.number.value == 0) {
-               Toast.makeText(this,"Please First Tab Click Button To move Next", Toast.LENGTH_SHORT).show()
-            }
-            else
-            {
+            if (viewModel.number.value == 0) {
+                Toast.makeText(
+                    this,
+                    "Please First Tab Click Button To move Next",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 val intent = Intent(this, NewScreen::class.java)
                 startActivity(intent)
             }
@@ -48,7 +50,7 @@ class PaymentInProgress : AppCompatActivity() {
             textView.text = viewModel.number.value!!.toString()
         }
         decrementbtn.setOnClickListener {
-            if(viewModel.number.value == 0) {
+            if (viewModel.number.value == 0) {
                 viewModel.number.observe(this)
                 { value ->
                     Toast.makeText(
@@ -57,9 +59,7 @@ class PaymentInProgress : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
-            else
-            {
+            } else {
                 viewModel.subOne()
                 textView.text = viewModel.number.value!!.toString()
             }
